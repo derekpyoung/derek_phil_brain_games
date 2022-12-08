@@ -11,67 +11,15 @@
 <body>
   
 
-     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-        <%= value %>
-      </div>
-    <% end %>
-    <h2>Create account</h2>
-<div class="spacer">
-  <div class="users-index-container">
-    <div class="users-index">
-      <%= form_with(model: @user, local: true) do |f| %>
-      <%= f.label :name %> <br>
-      <%= f.text_field :name, class: 'form-control' %><br>
-      <%= f.label :email %><br>
-      <%= f.email_field :email, class: 'form-control' %><br>
-      <%= f.label :password %><br>
-      <%= f.password_field :password, class: 'form-control' %><br>
-      <%= f.label :password_confirmation, "Confirmation" %><br>
-      <%= f.password_field :password_confirmation, class: 'form-control' %><br><br>
-      <%= f.submit "Create my account", class: "center btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
 
-<h2>Login</h2>
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
-    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
-    <%= value %>
-   </div>
-<% end %>
 
-  <div class="center">
-    <div class="login-container">
-      <%= form_tag '/login', method: :post do %>
-      <div class="login center">
-        <%= label_tag :email %> :&nbsp;
-        <%= text_field_tag :email%>
-      </div>
-      <br>
-      <div class="login center">
-        <%= label_tag :password %> :&nbsp;   
-        <%= password_field_tag :password %>
-      </div>
-      <br>
-      <button class="btn  btn-primary end" type="submit" > Submit </button>
-    </div>
 
   
-    <%end%>
-
-     <%= form_tag '/logout', method: :destroy do %>
-     <button class="btn" type="submit">LogOut</button> 
-     <%end%>
-  </div> 
 
 <div>
   <h2>Users Index</h2>
     <%@users.each do |user| %>
-  <p> <%= user.name  %> </p>
+    <a href="/users/<%=user.id%>"><%=user.name.capitalize%></a>
     <p> <%= user.email %></p>
     <p>---------------------</p>
     <%end%>
